@@ -1,6 +1,6 @@
 # Dependencias
 node_modules/
-package-lock.json
+# package-lock.json - DEBE estar versionado para npm ci en CI/CD
 yarn.lock
 
 # Resultados de Playwright
