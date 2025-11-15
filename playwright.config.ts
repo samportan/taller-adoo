@@ -22,12 +22,14 @@ export default defineConfig({
   ],
   /* Configuración compartida para todos los proyectos */
   use: {
-    /* URL base para usar en acciones como `await page.goto('/')`. */
-    baseURL: 'http://localhost:3000',
     /* Recopilar trace cuando se reintenta el test fallido. Ver https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
+    /* Timeout para acciones */
+    actionTimeout: 10000,
+    /* Timeout para navegación */
+    navigationTimeout: 30000,
   },
 
   /* Configurar proyectos para navegadores principales */

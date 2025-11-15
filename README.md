@@ -57,48 +57,70 @@ npm run test:report
 
 ```
 taller-adoo/
-├── tests/              # Tests de Playwright
-├── playwright.config.ts # Configuración de Playwright
-├── package.json        # Dependencias del proyecto
+├── tests/
+│   ├── pages/                    # Page Object Models (POM)
+│   │   ├── LoginPage.ts
+│   │   ├── ProductsPage.ts
+│   │   ├── CartPage.ts
+│   │   ├── CheckoutPage.ts
+│   │   ├── CheckoutOverviewPage.ts
+│   │   └── CheckoutCompletePage.ts
+│   ├── saucedemo-login.spec.ts   # Tests de login
+│   ├── saucedemo-products.spec.ts # Tests de productos
+│   ├── saucedemo-cart.spec.ts    # Tests de carrito
+│   ├── saucedemo-checkout.spec.ts # Tests de checkout
+│   ├── saucedemo-logout.spec.ts  # Tests de logout
+│   └── failing-tests.spec.skip.ts # Tests que fallan (deshabilitados)
+├── playwright.config.ts          # Configuración de Playwright
+├── package.json                  # Dependencias del proyecto
 ├── .github/
-│   └── workflows/      # Workflows de GitHub Actions
-└── README.md          # Este archivo
+│   └── workflows/                # Workflows de GitHub Actions
+└── README.md                     # Este archivo
 ```
+
+## 🎯 Tests Implementados
+
+Este proyecto contiene tests automatizados para **SauceDemo** usando el patrón **Page Object Model (POM)**:
+
+### ✅ Tests de Login
+- Login exitoso con credenciales válidas
+- Validación de credenciales inválidas
+- Usuario bloqueado
+- Usuarios especiales (problem_user, performance_glitch_user)
+- Validación de campos requeridos
+
+### ✅ Tests de Productos
+- Visualización de lista de productos
+- Agregar productos al carrito
+- Remover productos del carrito
+- Ordenar productos (precio, nombre)
+- Navegación al carrito
+
+### ✅ Tests de Carrito
+- Visualización de productos en el carrito
+- Remover productos del carrito
+- Continuar comprando
+- Proceder al checkout
+
+### ✅ Tests de Checkout
+- Completar checkout exitosamente
+- Validación de información requerida
+- Cancelar checkout
+- Ver resumen del pedido
+- Navegación después del checkout
+
+### ✅ Tests de Logout
+- Logout exitoso
+- Validación de acceso después del logout
 
 ## 🔄 CI/CD con GitHub Actions
 
 Los tests se ejecutan automáticamente en cada push y pull request gracias a GitHub Actions. El workflow está configurado en `.github/workflows/playwright.yml`.
 
-### 📘 Guías Disponibles
-
-- **[GUIA_GITHUB_PASO_A_PASO.md](GUIA_GITHUB_PASO_A_PASO.md)** - Guía completa paso a paso para configurar GitHub
-- **[GUIA_PIPELINES.md](GUIA_PIPELINES.md)** - Cómo ver pipelines exitosas y fallidas
-- **[INSTRUCCIONES_GITHUB.md](INSTRUCCIONES_GITHUB.md)** - Instrucciones rápidas para subir a GitHub
-
-### 🚀 Configuración Rápida
-
-**Opción 1: Script automatizado (Windows PowerShell)**
-```powershell
-.\setup-git.ps1
-```
-
-**Opción 2: Manual**
-```bash
-git init
-git add .
-git commit -m "Initial commit: Configuración de Playwright con CI/CD"
-git remote add origin https://github.com/TU_USUARIO/TU_REPOSITORIO.git
-git branch -M main
-git push -u origin main
-```
-
 ### Ver Pipelines Exitosas y Fallidas
 
-**Resumen rápido:**
 - ✅ **Pipeline exitosa (actual):** Todos los tests pasan
 - ❌ **Pipeline fallida:** Renombra `tests/failing-tests.spec.skip.ts` a `failing-tests.spec.ts`
-
-Para más detalles, consulta **[GUIA_PIPELINES.md](GUIA_PIPELINES.md)**
 
 ## 📚 Recursos
 
